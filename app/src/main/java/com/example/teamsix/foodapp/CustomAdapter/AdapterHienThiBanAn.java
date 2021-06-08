@@ -27,7 +27,7 @@ import com.example.teamsix.foodapp.DTO.ThanhToanDTO;
 import com.example.teamsix.foodapp.Fragment.HienThiThucDonFragment;
 import com.example.teamsix.foodapp.R;
 import com.example.teamsix.foodapp.ThanhToanActivity;
-import com.example.teamsix.foodapp.TrangChuActicity;
+import com.example.teamsix.foodapp.TrangChuActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -54,7 +54,7 @@ public class AdapterHienThiBanAn extends BaseAdapter implements View.OnClickList
         banAnDAO = new BanAnDAO(context);
         goiMonDAO = new GoiMonDAO(context);
         loaiMonAnDAO = new LoaiMonAnDAO(context);
-        fragmentManager = ((TrangChuActicity)context).getSupportFragmentManager();
+        fragmentManager = ((TrangChuActivity)context).getSupportFragmentManager();
     }
 
     @Override
@@ -88,7 +88,7 @@ public class AdapterHienThiBanAn extends BaseAdapter implements View.OnClickList
                 List<LoaiMonAnDTO> loaiMonAnDTOs = loaiMonAnDAO.LayDanhSachLoaiMonAn();
 
                 if (loaiMonAnDTOs.size() > 0){
-                    Intent LayiTrangChu = ((TrangChuActicity)context).getIntent();
+                    Intent LayiTrangChu = ((TrangChuActivity)context).getIntent();
                     int manhanvien = LayiTrangChu.getIntExtra("manhanvien", 0);
 
                     String tinhtrang = banAnDAO.LayTinhTrangBan(maban);

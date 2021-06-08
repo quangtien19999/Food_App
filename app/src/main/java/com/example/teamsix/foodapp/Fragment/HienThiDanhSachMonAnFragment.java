@@ -1,16 +1,26 @@
 package com.example.teamsix.foodapp.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.example.teamsix.foodapp.CustomAdapter.AdapterHienThiDanhSachMonAn;
 import com.example.teamsix.foodapp.DAO.MonAnDAO;
@@ -46,7 +56,7 @@ public class HienThiDanhSachMonAnFragment extends Fragment{
             adapterHienThiDanhSachMonAn = new AdapterHienThiDanhSachMonAn(getActivity(), R.layout.custom_layout_hienthidanhsachmonan, monAnDTOList);
             gridView.setAdapter(adapterHienThiDanhSachMonAn);
             adapterHienThiDanhSachMonAn.notifyDataSetChanged();
-
+            registerForContextMenu(gridView);
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -57,8 +67,20 @@ public class HienThiDanhSachMonAnFragment extends Fragment{
 
                         startActivity(iSoLuong);
                     }
+                    /*else{
+                        int mamonan = monAnDTOList.get(position).getMaMonAn();
+                        boolean kiemtra = monAnDAO.XoaMonAn(mamonan);
+                        if(kiemtra){
+                            Toast.makeText(getActivity(),getActivity().getResources().getString(R.string.xoathanhcong), Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            Toast.makeText(getActivity(),getActivity().getResources().getString(R.string.loi), Toast.LENGTH_SHORT).show();
+                        }
+                    }*/
                 }
-            });
+            }
+            );
+
         }
 
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -72,4 +94,41 @@ public class HienThiDanhSachMonAnFragment extends Fragment{
         });
         return view;
     }
+
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getActivity().getMenuInflater().inflate(R.menu.edit_context_menu, menu);
+        menu.removeItem(R.id.itSua);
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int vitri = menuInfo.position;
+        int mamonan = monAnDTOList.get(vitri).getMaMonAn();
+
+        switch(id){
+            case R.id.itSua:
+
+                break;
+            case R.id.itXoa:
+                boolean kiemtra = monAnDAO.XoaMonAn(mamonan);
+                if (kiemtra){
+                    Toast.makeText(getActivity(),getActivity().getResources().getString(R.string.xoathanhcong), Toast.LENGTH_SHORT).show();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    if (Build.VERSION.SDK_INT >= 26){
+                        transaction.setReorderingAllowed(false);
+                    }
+                    transaction.detach(this).attach(this).commit();
+                }else
+                    Toast.makeText(getActivity(),getActivity().getResources().getString(R.string.loi) + maban, Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+
 }

@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import com.example.teamsix.foodapp.DTO.NhanVienDTO;
 import com.example.teamsix.foodapp.Database.CreateDatabase;
@@ -25,7 +27,12 @@ public class NhanVienDAO {
         ContentValues contentValues = new ContentValues();
 
         //put các trường dữ liệu
-        contentValues.put(CreateDatabase.TB_NHANVIEN_TEDN, nhanVienDTO.getTENDANGNHAP());
+        try{
+            contentValues.put(CreateDatabase.TB_NHANVIEN_TEDN, nhanVienDTO.getTENDANGNHAP());
+        }
+        catch(SQLiteException e){
+            return false;
+        }
         contentValues.put(CreateDatabase.TB_NHANVIEN_CMND, nhanVienDTO.getCMND());
         contentValues.put(CreateDatabase.TB_NHANVIEN_GIOITINH, nhanVienDTO.getGIOITINH());
         contentValues.put(CreateDatabase.TB_NHANVIEN_MATKHAU, nhanVienDTO.getMATKHAU());
@@ -61,6 +68,8 @@ public class NhanVienDAO {
         return manhanvien;
     }
 
+
+
     @SuppressLint("Recycle")
     public List<NhanVienDTO> LayDanhSachNhanVien(){
         List<NhanVienDTO> nhanvienDTOS = new ArrayList<>();
@@ -71,7 +80,7 @@ public class NhanVienDAO {
             NhanVienDTO nhanVienDTO = new NhanVienDTO();
             nhanVienDTO.setGIOITINH(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_GIOITINH)));
             nhanVienDTO.setNGAYSINH(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_NGAYSINH)));
-            nhanVienDTO.setCMND(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_CMND)));
+            nhanVienDTO.setCMND(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_CMND)));
             nhanVienDTO.setMATKHAU(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_MATKHAU)));
             nhanVienDTO.setTENDANGNHAP(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_TEDN)));
             nhanVienDTO.setMANV(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_MANV)));
@@ -111,7 +120,7 @@ public class NhanVienDAO {
         while (!cursor.isAfterLast()){
             nhanVienDTO.setGIOITINH(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_GIOITINH)));
             nhanVienDTO.setNGAYSINH(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_NGAYSINH)));
-            nhanVienDTO.setCMND(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_CMND)));
+            nhanVienDTO.setCMND(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_CMND)));
             nhanVienDTO.setMATKHAU(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_MATKHAU)));
             nhanVienDTO.setTENDANGNHAP(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_TEDN)));
             nhanVienDTO.setMANV(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_NHANVIEN_MANV)));

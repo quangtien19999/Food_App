@@ -54,8 +54,8 @@ public class CreateDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String tbNHANVIEN = "CREATE TABLE " + TB_NHANVIEN + " ( " + TB_NHANVIEN_MANV + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TB_NHANVIEN_TEDN + " TEXT, " + TB_NHANVIEN_MATKHAU + " TEXT, " + TB_NHANVIEN_GIOITINH + " TEXT, "
-                + TB_NHANVIEN_NGAYSINH + " TEXT, " + TB_NHANVIEN_CMND + " INTEGER , " + TB_NHANVIEN_MAQUYEN + " INTEGER )";
+                + TB_NHANVIEN_TEDN + " TEXT UNIQUE, " + TB_NHANVIEN_MATKHAU + " TEXT, " + TB_NHANVIEN_GIOITINH + " TEXT, "
+                + TB_NHANVIEN_NGAYSINH + " TEXT, " + TB_NHANVIEN_CMND + " TEXT , " + TB_NHANVIEN_MAQUYEN + " INTEGER )";
 
         String tbBANAN = "CREATE TABLE " + TB_BANAN + " ( " + TB_BANAN_MABAN + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + TB_BANAN_TENBAN + " TEXT, " + TB_BANAN_TINHTRANG + " TEXT )";
@@ -67,7 +67,7 @@ public class CreateDatabase extends SQLiteOpenHelper {
         String tbLOAIMON = "CREATE TABLE " + TB_LOAIMONAN + " ( " + TB_LOAIMONAN_MALOAI + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TB_LOAIMONAN_TENLOAI + " TEXT )";
 
-        String tbQUYEN = "CREATE TABLE " + TB_QUYEN + " ( " + TB_QUYEN_MAQUYEN + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+        String tbQUYEN = "CREATE TABLE " + TB_QUYEN + " ( " + TB_QUYEN_MAQUYEN + " INTEGER,"
                 + TB_QUYEN_TENQUYEN + " TEXT )";
 
         String tbGOIMON = "CREATE TABLE " + TB_GOIMON + " ( " + TB_GOIMON_MAGOIMON + " INTEGER PRIMARY KEY AUTOINCREMENT, "

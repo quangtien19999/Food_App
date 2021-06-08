@@ -46,10 +46,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                         nhanVienDAO = new NhanVienDAO(this);
                         NhanVienDTO nhanVienDTO = new NhanVienDTO();
                         nhanVienDTO.setTENDANGNHAP("admin");
-                        nhanVienDTO.setCMND(111111111);
+                        nhanVienDTO.setCMND("111111111");
                         nhanVienDTO.setGIOITINH("Nam");
                         nhanVienDTO.setMATKHAU("admin");
-                        nhanVienDTO.setNGAYSINH("01/01/1997");
+                        nhanVienDTO.setNGAYSINH("01/01/1999");
                         nhanVienDTO.setMAQUYEN(0);
 
                         nhanVienDAO.ThemNV(nhanVienDTO);
@@ -57,10 +57,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                         editor = mMoLanDau.edit();
                         editor.putBoolean("MOLANDAU", false);
                         editor.apply();
+
                     }
 
-                    Intent iDangNhap = new Intent(this, DangNhapActivity.class);
-                    startActivity(iDangNhap);
+                    Intent iMoLanDau = new Intent(this, DangNhapActivity.class);
+                    startActivity(iMoLanDau);
                     finish();
                 }
             }

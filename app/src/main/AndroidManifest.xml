@@ -27,7 +27,7 @@
         </activity>
         <activity android:name="com.example.teamsix.foodapp.DangNhapActivity"/>
         <activity android:name="com.example.teamsix.foodapp.DangKyActivity" />
-        <activity android:name="com.example.teamsix.foodapp.TrangChuActicity" />
+        <activity android:name="com.example.teamsix.foodapp.TrangChuActivity" />
         <activity android:name="com.example.teamsix.foodapp.ThemThucDonActivity" />
 
         <activity

@@ -83,7 +83,7 @@ public class DangNhapActivity extends AppCompatActivity implements View.OnClickL
             editor.putInt("maquyen", maquyen);
             editor.apply();
 
-            Intent iTrangChu = new Intent(DangNhapActivity.this, TrangChuActicity.class); // chuyển đổi 2 activity
+            Intent iTrangChu = new Intent(DangNhapActivity.this, TrangChuActivity.class); // chuyển đổi 2 activity
             iTrangChu.putExtra("tendn", edTenDangNhap.getText().toString());
             iTrangChu.putExtra("manhanvien", kiemtra);
             startActivity(iTrangChu);

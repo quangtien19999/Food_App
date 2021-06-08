@@ -4,9 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -115,8 +118,14 @@ public class HienThiNhanVienFragment extends Fragment{
             case R.id.itThemNhanVien:
                 Intent iDangKy = new Intent(getActivity(), DangKyActivity.class);
                 startActivity(iDangKy);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                if (Build.VERSION.SDK_INT >= 26){
+                    transaction.setReorderingAllowed(false);
+                }
+                transaction.detach(this).attach(this).commit();
                 break;
         }
         return true;
     }
+
 }

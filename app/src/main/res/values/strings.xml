@@ -9,6 +9,9 @@
     <string name="dangky">ĐĂNG KÝ</string>
     <string name="loitendangnhap">Vui lòng nhập tên đăng nhập</string>
     <string name="loinhapmatkhau">Vui lòng nhập mật khẩu</string>
+    <string name="loinhapngaysinh">Vui lòng nhập ngày sinh</string>
+    <string name="loinhapcmt">Vui lòng nhập số chứng minh nhân dân</string>
+    <string name="loinhapthongtindangky">Vui lòng nhập đầy đủ thông tin</string>
     <string name="themthanhcong">Thêm thành công !</string>
     <string name="themthatbai">Thêm thất bại !</string>
     <string name="dangnhap">ĐĂNG NHẬP</string>

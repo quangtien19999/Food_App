@@ -52,4 +52,8 @@ public class MonAnDAO {
 
         return monAnDTOs;
     }
+    public boolean XoaMonAn(int mamonan){
+        long kiemtra = database.delete(CreateDatabase.TB_MONAN, CreateDatabase.TB_MONAN_MAMON + "=" + mamonan, null);
+        return kiemtra != 0;
+    }
 }

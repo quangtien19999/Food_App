@@ -23,7 +23,7 @@ import com.example.teamsix.foodapp.DAO.LoaiMonAnDAO;
 import com.example.teamsix.foodapp.DTO.LoaiMonAnDTO;
 import com.example.teamsix.foodapp.R;
 import com.example.teamsix.foodapp.ThemThucDonActivity;
-import com.example.teamsix.foodapp.TrangChuActicity;
+import com.example.teamsix.foodapp.TrangChuActivity;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class HienThiThucDonFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_hienthithucdon, container, false);
         setHasOptionsMenu(true);
-        ((TrangChuActicity) getActivity()).getSupportActionBar().setTitle(R.string.thucdon); //khi gọi getActivity thì hệ thống không hiểu là của activity nào
+        ((TrangChuActivity) getActivity()).getSupportActionBar().setTitle(R.string.thucdon); //khi gọi getActivity thì hệ thống không hiểu là của activity nào
         //mà trong TrangChuActivity chứa tất cả Fragment nên ta ép kiểu cho nó về TrangChuActivity
         gridView = view.findViewById(R.id.gvHienThiThucDon);
 

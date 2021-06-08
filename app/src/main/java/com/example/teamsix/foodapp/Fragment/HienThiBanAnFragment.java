@@ -27,7 +27,7 @@ import com.example.teamsix.foodapp.DTO.BanAnDTO;
 import com.example.teamsix.foodapp.R;
 import com.example.teamsix.foodapp.SuaBanAnActivity;
 import com.example.teamsix.foodapp.ThemBanAnActivity;
-import com.example.teamsix.foodapp.TrangChuActicity;
+import com.example.teamsix.foodapp.TrangChuActivity;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class HienThiBanAnFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_hienthibanan, container, false);
         setHasOptionsMenu(true);
-        ((TrangChuActicity)getActivity()).getSupportActionBar().setTitle(R.string.banan); //khi gọi getActivity thì hệ thống không hiểu là của activity nào
+        ((TrangChuActivity)getActivity()).getSupportActionBar().setTitle(R.string.banan); //khi gọi getActivity thì hệ thống không hiểu là của activity nào
                                                                                     //mà trong TrangChuActivity chứa tất cả Fragment nên ta ép kiểu cho nó về TrangChuActivity
 
         gvHienThiBanAn = view.findViewById(R.id.gvHienBanAn);

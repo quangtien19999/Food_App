@@ -2,7 +2,7 @@ package com.example.teamsix.foodapp.DTO;
 
 public class NhanVienDTO {
     private int MANV;
-    private int CMND;
+    private String CMND;
     private int MAQUYEN;
     private String TENDANGNHAP, MATKHAU, GIOITINH, NGAYSINH;
 
@@ -22,11 +22,11 @@ public class NhanVienDTO {
         this.MANV = MANV;
     }
 
-    public int getCMND() {
+    public String getCMND() {
         return CMND;
     }
 
-    public void setCMND(int CMND) {
+    public void setCMND(String CMND) {
         this.CMND = CMND;
     }
 

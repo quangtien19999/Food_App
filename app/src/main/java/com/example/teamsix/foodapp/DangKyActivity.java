@@ -2,11 +2,13 @@ package com.example.teamsix.foodapp;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.FragmentManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -121,12 +123,14 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         String sNgaySinh = edNgaySinh.getText().toString();
-        int sCMND = Integer.parseInt(edCMND.getText().toString());
-
-        if(sTenDangNhap == null || sTenDangNhap.equals(""))
+        //int sCMND = Integer.parseInt(edCMND.getText().toString()) ;
+        String sCMND = edCMND.getText().toString();
+        if (sTenDangNhap == null || sTenDangNhap.equals("")){
             Toast.makeText(DangKyActivity.this, getResources().getString(R.string.loitendangnhap), Toast.LENGTH_SHORT).show();
-        else if(sMatKhau==null || sMatKhau.equals(""))
+        }
+        else if (sMatKhau == null || sMatKhau.equals("")){
             Toast.makeText(DangKyActivity.this, getResources().getString(R.string.loinhapmatkhau), Toast.LENGTH_SHORT).show();
+        }
         else {
             NhanVienDTO nhanVienDTO = new NhanVienDTO();
             nhanVienDTO.setTENDANGNHAP(sTenDangNhap);
@@ -135,8 +139,13 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
             nhanVienDTO.setNGAYSINH(sNgaySinh);
             nhanVienDTO.setGIOITINH(sGioiTinh);
 
-            int vitri = spinQuyen.getSelectedItemPosition();
-            int maquyen = quyenDTOList.get(vitri).getMaQuyen();
+            //int vitri = spinQuyen.getSelectedItemPosition();
+            //int maquyen = quyenDTOList.get(vitri).getMaQuyen();
+            int maquyen = 1;
+            if (spinQuyen.getSelectedItem().toString().equalsIgnoreCase("Quản lý")){
+                maquyen = 0;
+            }
+
             nhanVienDTO.setMAQUYEN(maquyen);
 
             boolean kiemtra = nhanVienDAO.ThemNV(nhanVienDTO);
@@ -150,7 +159,7 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
         String sTenDangNhap = edTenDangNhap.getText().toString();
         String sMatKhau = edMatKhau.getText().toString();
         String sNgaySinh = edNgaySinh.getText().toString();
-        int sCMND = Integer.parseInt(edCMND.getText().toString());
+        String sCMND = edCMND.getText().toString();
         switch (rgGioiTinh.getCheckedRadioButtonId()) {
             case R.id.rdNam:
                 sGioiTinh = "Nam";
@@ -159,20 +168,30 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
                 sGioiTinh = "Nữ";
                 break;
         }
+        if (sTenDangNhap == null || sTenDangNhap.equals("")){
+            Toast.makeText(DangKyActivity.this, getResources().getString(R.string.loitendangnhap), Toast.LENGTH_SHORT).show();
+        }
+        else if (sMatKhau == null || sMatKhau.equals("")){
+            Toast.makeText(DangKyActivity.this, getResources().getString(R.string.loinhapmatkhau), Toast.LENGTH_SHORT).show();
+        }
+        else {
+            NhanVienDTO nhanVienDTO = new NhanVienDTO();
+            nhanVienDTO.setMANV(manhanvien);
+            nhanVienDTO.setTENDANGNHAP(sTenDangNhap);
+            nhanVienDTO.setMATKHAU(sMatKhau);
+            nhanVienDTO.setCMND(sCMND);
+            nhanVienDTO.setNGAYSINH(sNgaySinh);
+            nhanVienDTO.setGIOITINH(sGioiTinh);
+            int vitri = spinQuyen.getSelectedItemPosition();
+            int maquyen = quyenDTOList.get(vitri).getMaQuyen();
+            nhanVienDTO.setMAQUYEN(maquyen);
 
-        NhanVienDTO nhanVienDTO = new NhanVienDTO();
-        nhanVienDTO.setMANV(manhanvien);
-        nhanVienDTO.setTENDANGNHAP(sTenDangNhap);
-        nhanVienDTO.setMATKHAU(sMatKhau);
-        nhanVienDTO.setCMND(sCMND);
-        nhanVienDTO.setNGAYSINH(sNgaySinh);
-        nhanVienDTO.setGIOITINH(sGioiTinh);
-
-        boolean kiemtra = nhanVienDAO.SuaNV(nhanVienDTO);
-        if (kiemtra)
-            Toast.makeText(DangKyActivity.this, getResources().getString(R.string.suathanhcong), Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(DangKyActivity.this, getResources().getString(R.string.loi), Toast.LENGTH_SHORT).show();
+            boolean kiemtra = nhanVienDAO.SuaNV(nhanVienDTO);
+            if (kiemtra)
+                Toast.makeText(DangKyActivity.this, getResources().getString(R.string.suathanhcong), Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(DangKyActivity.this, getResources().getString(R.string.loi), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @SuppressLint("NonConstantResourceId")
