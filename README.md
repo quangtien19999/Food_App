@@ -1,4 +1,5 @@
-Project được tạo bởi Android Studio 4.1.1
+Project được tạo bởi Android Studio 4.1.1.
+
 Project đã được test và tương thích với các bản Android Studio mới hơn (tính đến bản Android Studio 2020.3).
 
 Khi mở project lần đầu bằng Android Stuido, cần chờ một thời gian để Android Studio build Gradle.
